@@ -3,7 +3,7 @@ import { searchPlugin } from "@vuepress/plugin-search";
 import theme from "./theme.js";
 
 export default defineUserConfig({
-  base: "/",
+  base: "/wf-site/",
 
   lang: "zh-CN",
   title: "紫月冰凌的文档",
