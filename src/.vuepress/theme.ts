@@ -7,7 +7,7 @@ export default hopeTheme({
 
   author: {
     name: "Mr.wangfeng337",
-    url: "https://mister-hope.com",
+    url: "https://gitee.com/gyhdx/my-site",
   },
 
   iconAssets: "fontawesome-with-brands",
@@ -42,6 +42,8 @@ export default hopeTheme({
       category: "Announcements",
       categoryId: "DIC_kwDOG_Pt2M4COD69",
     },
+
+    copyCode: {},
 
     // All features are enabled for demo, only preserve features you need here
     mdEnhance: {
