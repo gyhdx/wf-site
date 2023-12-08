@@ -9,8 +9,8 @@ actions:
   - text: 开始阅读
     link: /python/
     type: primary
-  - text: 知识星球
-    link: /about-the-author/zhishixingqiu-two-years.md
+  - text: ai绘图
+    link: /ai/ai绘画/Stable Diffusion学习.md
     type: default
 footer: 使用 <a href="https://theme-hope.vuejs.press/zh/" target="_blank">VuePress Theme Hope</a> 主题 | MIT 协议, 版权所有 © 2023-present Mr.gyhdx
 ---
@@ -35,5 +35,4 @@ footer: 使用 <a href="https://theme-hope.vuejs.press/zh/" target="_blank">VueP
 [//]: # (- [坚持写技术博客六年了]&#40;./about-the-author/writing-technology-blog-six-years.md&#41;)
 
 ## 公众号
-
 
