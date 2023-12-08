@@ -11,7 +11,11 @@ export default defineUserConfig({
 
 
   theme,
-
+  head: [
+    [
+      'link',{ rel: 'icon', href: '/favicon.ico' }
+    ]
+  ],
   // Enable it with pwa
   // shouldPrefetch: false,
   plugins: [
