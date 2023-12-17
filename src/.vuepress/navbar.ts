@@ -8,6 +8,11 @@ export default navbar([
     link: "/Csharp/",
   },
   {
+    text: "C++",
+    icon: "fas fa-file-code",
+    link: "/c++/",
+  },
+  {
     text: "Java笔记",
     icon: "fab fa-java",
     link: "/java/",

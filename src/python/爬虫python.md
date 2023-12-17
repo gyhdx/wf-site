@@ -7,7 +7,7 @@ order: 2
 
 ##  爬虫python
 
-
+> 学习地址：https://www.bilibili.com/video/BV1qB4y1D77o
 
 必须的python库
 
@@ -259,3 +259,249 @@ def xpathUse():
 
 ##  3.request进阶
 
+###  1.获取cookie
+
+有两种方式：
+
+- 通过request的session来请求login接口从而保存cookie数据
+- 直接把cookie写入请求的header中
+
+```python
+def setCookie():
+    aimUrl = "https://www.xxx.com/getData"
+    
+    # 通过session保存cookie
+    session = requests.session()
+    data = {
+        'username': "xxx",
+        'password':"xxx"
+    }
+    loginUrl = "https://www.xxx.com/login"
+    session.post(loginUrl, data)
+    rsp = session.get(aimUrl)
+    
+    # 直接把cookie写入请求
+    rsp2 = requests.get(aimUrl, headers={"cookie": "xx:xx"})
+```
+
+###  防盗链
+
+请求时链接会有一些规则，防止请求错误所以需要进行防盗链。
+
+案例：
+
+```python
+def getPearVideo():
+    baseUrl = "https://www.pearvideo.com/video_1642157"
+    uid = baseUrl.split("_")[1]
+    videoReqUrl = 'https://www.pearvideo.com/videoStatus.jsp?contId=' + uid + '&mrd=0.932583187049618'
+    print('请求的链接是: {}', videoReqUrl)
+    # 请求头信息
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) "
+                      "Chrome/117.0.0.0 Safari/537.36",
+        # 防盗链，用于溯源
+        "Referer": 'https://www.pearvideo.com/video_1642157'
+    }
+
+    resp = requests.get(videoReqUrl, headers=headers)
+    print(resp.text)
+
+    dicts = resp.json()
+    aimSrUrl = dicts['videoInfo']['videos']['srcUrl']
+    st = dicts['systemTime']
+    # https://video.pearvideo.com/mp4/third/20200114/cont-1642157-11956977-141026-hd.mp4
+    # https://video.pearvideo.com/mp4/third/20200114/1702219719971-11956977-141026-hd.mp4
+    srcUrl = aimSrUrl.replace(st, f'cont-{uid}')
+	# 保存文件
+    with open('a.mp4', mode='wb') as f:
+        f.write(requests.get(srcUrl).content)
+```
+
+###  代理
+
+防止请求次数过多ip被封，导致无法访问链接。故使用代理
+
+案例：
+
+```python
+def daili():
+    proxies = {"https": "https://181.112.151.221:443", }
+    resp = requests.get('https://www.baidu.com', proxies=proxies)
+    resp.encoding = 'utf-8'
+    print(resp.text)
+```
+
+##  4.提高爬取效率
+
+###  多线程
+
+python中线程的使用
+
+通过target指定
+
+```python
+def th1():
+    for i in range(10000):
+        print('fun', i)
+
+
+if __name__ == '__main__':
+    t = Thread(target=th1)
+    t.start()
+    for i in range(10000):
+        print('main', i)
+```
+
+继承thread类
+
+```python
+class th2(Thread):
+    def run(self):
+        for i in range(10000):
+            print('fun', i)
+
+
+if __name__ == '__main__':
+    # t = Thread(target=th1)
+    # t.start()
+    tt = th2()
+    tt.start()
+    for i in range(10000):
+        print('main', i)
+```
+
+对多线程执行的任务传参
+
+```python
+def th3(name, name2='gg'):
+    for i in range(10000):
+        print(name, name2, i)
+
+
+if __name__ == '__main__':
+    # t = Thread(target=th1)
+    # t.start()
+    # tt = th2()
+    # tt.start()
+    # for i in range(10000):
+    #     print('main', i)
+    t = Thread(target=th3, args=('ww',))  # args参数必须是一个元组
+    t.start()
+    t1 = Thread(target=th3, args=('ss', 'dd'))
+    t1.start()
+```
+
+继承的方式重写构造函数直接在类声明时写就行
+
+###  线程池
+
+一次性开启多个线程，把任务交给线程池来执行
+
+使用：
+
+```python
+def th3(name, name2='gg'):
+    for i in range(10000):
+        print(name, name2, i)
+
+
+if __name__ == '__main__':
+    with ThreadPoolExecutor(20) as t:
+        for i in range(10):
+            t.submit(th3, name=f'线程{i}')
+    # 执行线程池的时候主线程会被暂时挂起等待线程池任务执行完成后在执行后续代码（守护线程）
+    print('end')
+
+```
+
+案例-爬取北京菜价
+
+```python
+f = open('data.csv', mode='w')
+csvWriter = csv.writer(f)
+
+def threadPoolPro(page):
+    url = 'http://www.xinfadi.com.cn/getPriceData.html'
+    data = {
+        'limit': 20,
+        'current': page
+    }
+    resp = requests.post(url, data=data).json()['list']
+    for item in resp:
+        # 数据处理
+        value = str(item.values()).replace("dict_values", '').replace("([", '').replace('])', '')
+        # 保存数据到csv
+        csvWriter.writerow(value)
+    print(f'page {page} save finish')
+
+
+if __name__ == '__main__':
+    with ThreadPoolExecutor(50) as pool:
+        for i in range(1, 200):
+            pool.submit(threadPoolPro, i)
+    print('all finish')
+```
+
+###  异步
+
+```python
+async def downloadImg(url):
+    name = url.split("/")[-1]
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            # 将返回值写入文件
+            with open(name, mode='wb') as f:
+                f.write(await resp.content.read())
+
+    print("down")
+
+
+if __name__ == '__main__':
+    # t = Thread(target=th1)
+    # t.start()
+    # tt = th2()
+    # tt.start()
+    # for i in range(10000):
+    #     print('main', i)
+
+    # t = Thread(target=th3, args=('ww',))  # args参数必须是一个元组
+    # t.start()
+    # t1 = Thread(target=th3, args=('ss', 'dd'))
+    # t1.start()
+
+    # with ThreadPoolExecutor(20) as t:
+    #     for i in range(10):
+    #         t.submit(th3, name=f'线程{i}')
+    # # 执行线程池的时候主线程会被暂时挂起等待线程池任务执行完成后在执行后续代码（守护线程）
+    # print('end')
+
+    # 案例
+    # with ThreadPoolExecutor(50) as pool:
+    #     for i in range(1, 200):
+    #         pool.submit(threadPoolPro, i)
+    # print('all finish')
+
+    task = []
+    loop = asyncio.new_event_loop()
+    for url in urls:
+        task.append(loop.create_task(downloadImg(url)))
+
+    loop.run_until_complete(asyncio.wait(task))
+```
+
+##  5.selenium
+
+> 文档：https://python-selenium-zh.readthedocs.io/zh-cn/latest/
+
+
+
+### 1.安装
+
+https://registry.npmmirror.com/binary.html?path=chromedriver/
+
+### 2.配置driver
+
+内网地址：https://registry.npmmirror.com/binary.html?path=chromedriver/
+
+外网地址：http://chromedriver.storage.googleapis.com/index.html

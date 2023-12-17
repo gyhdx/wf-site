@@ -10,7 +10,7 @@ export default hopeTheme({
     url: "https://gitee.com/gyhdx/my-site",
   },
 
-  iconAssets: "fontawesome-with-brands",
+  iconAssets: ["fontawesome-with-brands", "iconfont"],
 
   logo: "https://theme-hope-assets.vuejs.press/logo.svg",
 

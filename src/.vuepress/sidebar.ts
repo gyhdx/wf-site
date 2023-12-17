@@ -6,6 +6,7 @@ export default sidebar({
   "/java/": "structure",
   "/python/": "structure",
   "/cs/": "structure",
+  "/c++/": "structure",
   // "/": [
   //   "",
   //   {
