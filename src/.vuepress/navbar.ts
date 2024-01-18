@@ -10,7 +10,7 @@ export default navbar([
   {
     text: "C++",
     icon: "fas fa-file-code",
-    link: "/c++/",
+    link: "/cpp/",
   },
   {
     text: "Java笔记",
