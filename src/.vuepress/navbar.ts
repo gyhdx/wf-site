@@ -18,6 +18,11 @@ export default navbar([
     link: "/java/",
   },
   {
+    text: "plc",
+    icon: "fas fa-file-code",
+    link: "/plc/",
+  },
+  {
     text: "python",
     icon: "fab fa-python",
     link: "/python/",

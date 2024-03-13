@@ -7,6 +7,7 @@ export default sidebar({
   "/python/": "structure",
   "/cs/": "structure",
   "/cpp/": "structure",
+  "/plc/": "structure",
   // "/": [
   //   "",
   //   {
