@@ -1,6 +1,6 @@
 ---
 title: 01.plc基础
-order: 20
+order: 10
 ---
 
 ##   一、plc概述
