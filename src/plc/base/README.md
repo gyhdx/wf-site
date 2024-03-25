@@ -1,5 +1,5 @@
 ---
-title: 工控学习记录
+title: plc基础
 index: false
 icon: fas fa-laptop-code
 ---
