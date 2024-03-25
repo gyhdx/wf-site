@@ -1,0 +1,1 @@
+import{_ as e}from"./plugin-vue_export-helper-x3n3nnut.js";import{o as t,c,b as o}from"./app-JPZ0U2Lh.js";const i={},n=o("p",null,"lcc来源：https://www.bilibili.com/video/BV1c84y1N7iL",-1),s=[n];function _(l,r){return t(),c("div",null,s)}const m=e(i,[["render",_],["__file","index.html.vue"]]);export{m as default};
