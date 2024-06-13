@@ -1,5 +1,5 @@
 ---
-title: 三菱
+title: 电工基础
 index: false
 icon: fas fa-laptop-code
 ---
