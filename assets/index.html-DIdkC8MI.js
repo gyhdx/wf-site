@@ -1,0 +1,1 @@
+import{_ as t}from"./plugin-vue_export-helper-DlAUqK2U.js";import{o as n,c as o,b as r}from"./app-BmGc3g94.js";const l={};function s(c,e){return n(),o("div",null,e[0]||(e[0]=[r("p",null,"记录一些计算机基础及一些不受语言限制的知识。如系统设计及设计模式等",-1)]))}const f=t(l,[["render",s],["__file","index.html.vue"]]);export{f as default};
