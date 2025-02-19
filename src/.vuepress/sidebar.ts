@@ -8,6 +8,7 @@ export default sidebar({
   "/cs/": "structure",
   "/cpp/": "structure",
   "/plc/": "structure",
+  "/art/": "structure",
   // "/": [
   //   "",
   //   {

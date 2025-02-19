@@ -27,6 +27,10 @@ export default navbar([
     link: "/cs/",
   },
   {
+    text: "blender",
+    link: "/art/",
+  },
+  {
     text: "ai工具",
     icon: "fas fa-pencil-alt",
     link: "/ai/",
