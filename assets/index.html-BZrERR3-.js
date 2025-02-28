@@ -1,0 +1,1 @@
+import{_ as o}from"./plugin-vue_export-helper-DlAUqK2U.js";import{c as t,o as r,b as n}from"./app-DBc2jY3V.js";const l={};function s(c,e){return r(),t("div",null,e[0]||(e[0]=[n("p",null,"robot学习记录",-1)]))}const f=o(l,[["render",s],["__file","index.html.vue"]]);export{f as default};

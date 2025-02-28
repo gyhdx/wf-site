@@ -1,0 +1,1 @@
+import{_ as t}from"./plugin-vue_export-helper-DlAUqK2U.js";import{c as n,o,b as r}from"./app-DBc2jY3V.js";const l={};function c(s,e){return o(),n("div",null,e[0]||(e[0]=[r("p",null,"记录西门子1200plc的笔记",-1)]))}const f=t(l,[["render",c],["__file","index.html.vue"]]);export{f as default};

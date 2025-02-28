@@ -1,0 +1,1 @@
+import{_ as t}from"./plugin-vue_export-helper-DlAUqK2U.js";import{c as a,o,b as r,e as n}from"./app-DBc2jY3V.js";const s={};function c(l,e){return o(),a("div",null,e[0]||(e[0]=[r("h1",{id:"读取标签",tabindex:"-1"},[r("a",{class:"header-anchor",href:"#读取标签","aria-hidden":"true"},"#"),n(" 读取标签")],-1)]))}const i=t(s,[["render",c],["__file","解析xml.html.vue"]]);export{i as default};

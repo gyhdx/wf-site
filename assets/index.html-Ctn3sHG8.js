@@ -1,0 +1,1 @@
+import{_ as n}from"./plugin-vue_export-helper-DlAUqK2U.js";import{c as r,o as t,b as o}from"./app-DBc2jY3V.js";const l={};function s(c,e){return t(),r("div",null,e[0]||(e[0]=[o("p",null,"记录学习blender的笔记",-1)]))}const d=n(l,[["render",s],["__file","index.html.vue"]]);export{d as default};
