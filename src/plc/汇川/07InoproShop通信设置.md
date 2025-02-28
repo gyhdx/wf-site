@@ -1,5 +1,5 @@
 ---
-title: 06 运动控制
+title: 07 InoproShop通信设置
 order: 60
 ---
 

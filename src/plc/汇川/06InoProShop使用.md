@@ -1,6 +1,6 @@
 ---
-title: 04 InoProShop使用介绍
-order: 40
+title: 06 InoProShop使用介绍
+order: 60
 ---
 
 # 一个简单任务
